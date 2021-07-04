@@ -14,5 +14,7 @@
 */
 $router->group(['prefix' => 'tree'], function () use ($router) {
     $router->post('reConstructBinaryTree', 'TreeController@reConstructBinaryTree');
+
     $router->post('hasSubtree', 'TreeController@hasSubtree');
+
 });
