@@ -41,4 +41,13 @@ class TreeController extends Controller
         return $this->jsonSuccess($data);
     }
 
+
+    public function mirror(Request $request)
+    {
+
+        $tree = $request->tree;
+        $data = $this->service->mirror($tree);
+        return $this->jsonSuccess($data);
+    }
+
 }

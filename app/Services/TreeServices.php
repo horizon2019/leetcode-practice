@@ -67,4 +67,33 @@ class TreeServices extends Service
             && $this->isSubtree($treeChild->right, $treeParent->right);
     }
 
+
+    /**
+     * @param $tree
+     * @return false
+     * 操作给定的二叉树，将其变换为源二叉树的镜像
+     */
+    public function mirror($tree)
+    {
+
+        if ($tree == null) {
+            return false;
+        }
+
+        $LEFT = $RIGHT = null;
+
+        if ($tree->left) {
+            $LEFT = $this->mirror($tree->left);
+        }
+
+        if ($tree->right) {
+            $LEFT = $this->mirror($tree->right);
+        }
+
+        $tree->left = $RIGHT;
+        $tree->right = $LEFT;
+
+        return $tree;
+
+    }
 }
