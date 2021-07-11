@@ -16,5 +16,6 @@ $router->group(['prefix' => 'tree'], function () use ($router) {
     $router->post('reConstructBinaryTree', 'TreeController@reConstructBinaryTree');
     $router->post('hasSubtree', 'TreeController@hasSubtree');
     $router->post('mirror', 'TreeController@mirror');
+    $router->post('verfiySquenceOfBst','TreeController@verfiySquenceOfBst');
 
 });

@@ -96,4 +96,38 @@ class TreeServices extends Service
         return $tree;
 
     }
+
+
+    public function verifySquenceOfBst($tree)
+    {
+        $length = count($tree);
+
+        if ($length == 0) {
+            return false;
+        }
+        $root = end($tree);
+
+        //找出左右子树
+        for ($v = 0; $v < $length - 1; $v++) {
+            if ($tree[$v] > $root) {
+                break;
+            }
+        }
+        //确认右子树都大于根节点
+        for ($i = $v + 1; $i < $length - 1; $i++) {
+            if ($tree[$i] < $root) {
+                return false;
+            }
+        }
+        $left = $right = true;
+        //二叉查找树可能缺少左右子树
+        if ($v > 0) {
+            $left = $this->verifySquenceOfBst(array_slice($tree, 0, $v));
+        }
+        if ($i < $length) {
+            $right = $this->verifySquenceOfBst(array_slice($tree, $v, $length - $v - 1));
+        }
+
+        return $left && $right;
+    }
 }

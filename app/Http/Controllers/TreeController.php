@@ -50,4 +50,12 @@ class TreeController extends Controller
         return $this->jsonSuccess($data);
     }
 
+
+    public function verfiySquenceOfBst(Request $request)
+    {
+        $tree = $request->tree;
+        $data = $this->service->verifySquenceOfBst($tree);
+        return $this->jsonSuccess($data);
+    }
+
 }
