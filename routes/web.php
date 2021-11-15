@@ -19,3 +19,4 @@ $router->group(['prefix' => 'tree'], function () use ($router) {
     $router->post('verfiySquenceOfBst', 'TreeController@verfiySquenceOfBst');
 
 });
+
