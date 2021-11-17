@@ -4,9 +4,12 @@ class MyHashMap
 {
     /**
      */
+
+    protected $array;
+
     function __construct()
     {
-
+        $this->array = [];
     }
 
     /**
@@ -17,6 +20,8 @@ class MyHashMap
     function put($key, $value)
     {
 
+        $this->array[$key] = $value;
+
     }
 
     /**
@@ -25,7 +30,10 @@ class MyHashMap
      */
     function get($key)
     {
-
+        if (!isset($this->array[$key])) {
+            return -1;
+        };
+        return $this->array[$key];
     }
 
     /**
@@ -34,7 +42,7 @@ class MyHashMap
      */
     function remove($key)
     {
-
+        unset($this->array[$key]);
     }
 }
 
