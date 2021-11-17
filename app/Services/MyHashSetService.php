@@ -29,8 +29,10 @@ class MyHashSetService extends \App\Services\Service
     function add($key)
     {
 
-        array_push($array, $key);
-        return true;
+        if (!array_key_exists($this->array, $key)) {
+            array_push($this->array, $key);
+        }
+        return $this->array;
 
     }
 
@@ -41,6 +43,11 @@ class MyHashSetService extends \App\Services\Service
     function remove($key)
     {
 
+        foreach ($this->array as $k => $v) {
+            if ($v == $key) {
+                unset($this->array[$k]);
+            }
+        }
 
     }
 
@@ -50,8 +57,10 @@ class MyHashSetService extends \App\Services\Service
      */
     function contains($key)
     {
-        if (array_key_exists($this->array, $key)) {
-            return true;
+        foreach ($this->array as $v) {
+            if ($v == $key) {
+                return true;
+            }
         }
         return false;
     }
