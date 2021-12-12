@@ -14,3 +14,6 @@
 */
 
 
+$router->group(['prefix' => 'sum'], function () use ($router) {
+    $router->post('/', 'SumController@twoSum');
+});

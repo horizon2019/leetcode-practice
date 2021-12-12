@@ -25,3 +25,8 @@ $router->group(['prefix' => 'basic'], function () use ($router) {
     $router->post('/binarySearch', 'BasicController@binarySearch');
 });
 
+
+$router->group(['prefix' => 'sum'], function () use ($router) {
+    $router->post('/', 'SumController@twoSum');
+});
+

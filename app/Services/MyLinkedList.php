@@ -1,15 +1,33 @@
 <?php
 
+
+class Node
+{
+
+    public $val;
+    public $next;
+
+    public function __construct($val = null, $next = null)
+    {
+        $this->val = $val;
+        $this->next = $next;
+    }
+
+
+}
+
 class MyLinkedList
 {
 
-    protected $array;
+    public $size;
+    public $head;
 
     /**
      */
     function __construct()
     {
-        $this->array = [];
+        $this->head = new Node();
+        $this->size = 0;
     }
 
     /**
@@ -18,10 +36,20 @@ class MyLinkedList
      */
     function get($index)
     {
-        if ($index >= count($this->array) || $index < 0) {
+        //如果索引无效，则返回-1。
+        if ($index > $this->size - 1) {
             return -1;
         }
-        return $this->array[$index];
+
+        $pre = $this->head->next;
+        for ($i = 0; $i <= $index; $i++) {
+            if ($index == $i) {
+                return $pre->val;
+            }
+            $pre = $pre->next;
+        }
+
+        return -1;
 
     }
 
@@ -31,12 +59,11 @@ class MyLinkedList
      */
     function addAtHead($val)
     {
-        $length = count($this->array);
-        for ($i = $length; 0 < $i && $i <= count($this->array) - 1; $i--) {
-            $this->array[$i] = $this->array[$i - 1];
-        }
-        $this->array[0] = $val;
-        return $this->array;
+
+        $pre = $this->head;
+        $pre->next = new Node($val, $pre->next);
+        $this->size++;
+
     }
 
     /**
@@ -45,9 +72,13 @@ class MyLinkedList
      */
     function addAtTail($val)
     {
-        $length = count($this->array);
-        $this->array[$length] = $val;
-        return $this->array;
+        $size = $this->size;
+        $prev = $this->head;
+        for ($i = 0; $i < $size; $i++) {
+            $prev = $prev->next;
+        }
+        $prev->next = new Node($val, $prev->next);
+        $this->size++;
     }
 
     /**
@@ -57,21 +88,17 @@ class MyLinkedList
      */
     function addAtIndex($index, $val)
     {
-        $length = count($this->array);
-        if ($index == $length) {
-            return $this->addAtTail($val);
-        } elseif ($index == 0) {
-            return $this->addAtHead($val);
-        } elseif ($index > $length) {
-            return $this->array;
-        } elseif ($index < 0 && $index < $length) {
-
-            for ($i = $length; $index + 1 <= $i && $i < count($this->array); $i--) {
-                $this->array[$i] = $this->array[$i - 1];
-            }
-            $this->array[$index] = $val;
-            return $this->array;
+        if ($index > $this->size) {
+            return -1;
         }
+
+        $prev = $this->head;
+        for ($i = 0; $i < $index; $i++) {
+            $prev = $prev->next;
+        }
+
+        $prev->next = new Node($val, $prev->next);
+        $this->size++;
 
     }
 
@@ -81,12 +108,20 @@ class MyLinkedList
      */
     function deleteAtIndex($index)
     {
-
-        $length = count($this->array);
-        if ((0 <= $index) || ($index <= $length - 1)) {
-            unset($this->array[$index]);
+        if ($index > $this->size - 1) {
+            return -1;
         }
-        return $this->array;
+
+        $prev = $this->head;
+        for ($i = 0; $i <= $index; $i++) {
+            if ($i == $index) {
+                $prev->next = $prev->next->next;
+            }
+            $prev = $prev->next;
+        }
+
+        $this->size--;
+
     }
 }
 
