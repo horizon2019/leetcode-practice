@@ -29,7 +29,7 @@ class TreeController extends Controller
         $data = $this->service->reConstructBinaryTree($pre, $vin);
         return $this->jsonSuccess($data);
 
-        
+
     }
 
 
