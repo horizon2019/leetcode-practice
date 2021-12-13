@@ -22,7 +22,7 @@ $router->group(['prefix' => 'tree'], function () use ($router) {
 
 
 $router->group(['prefix' => 'basic'], function () use ($router) {
-    $router->post('/binarySearch', 'BasicController@binarySearch');
+    $router->post('/binarySearch', 'SearchController@binarySearch');
 });
 
 

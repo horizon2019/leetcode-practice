@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Services\BasicService;
+use App\Services\binarySearch;
 use Illuminate\Http\Request;
 
-class BasicController extends Controller
+class SearchController extends Controller
 {
 
 
@@ -14,7 +14,7 @@ class BasicController extends Controller
 
     public function __construct()
     {
-        $this->service = app(BasicService::class);
+        $this->service = app(binarySearch::class);
     }
 
     public function binarySearch(Request $request)

@@ -24,6 +24,5 @@ class SumController extends Controller
         $data = $this->service->twoSum();
         return $this->jsonSuccess($data);
 
-
     }
 }
