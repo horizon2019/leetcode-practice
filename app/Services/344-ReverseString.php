@@ -18,6 +18,7 @@ class ReverseString
             $f++;
         }
 
+        return $s;
     }
 
 
@@ -56,5 +57,28 @@ class ReverseString
         return $s;
 
 
+    }
+
+
+    /**
+     * @param $s
+     * @return false|string[]
+     * 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+     * 输入："Let's take LeetCode contest"
+     * 输出："s'teL ekat edoCteeL tsetnoc"
+     */
+    function reverseWords($s)
+    {
+        $ret = [];
+        $words = explode(' ', $s);
+
+        foreach ($words as $k=>$item) {
+            $item = $this->reverseString($item);
+
+            array_push($ret, $item);
+
+        }
+
+        return implode(' ', $ret);
     }
 }
